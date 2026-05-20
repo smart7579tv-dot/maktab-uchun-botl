@@ -1,47 +1,48 @@
-# 🏫 Maktab Telegram Bot
+# Maktab Telegram Bot — To'liq qo'llanma
 
-## 📋 Imkoniyatlar
-- ✅ Ro'yxatdan o'tish (6 bosqich)
-- 📊 Google Sheets ga avtomatik saqlash
-- ✅ Admin tasdiqlash / ❌ Rad etish tugmalari
-- 🔔 Foydalanuvchiga bildirishnoma
-- 📈 Statistika (/statistika)
+## Imkoniyatlar
+- Ro'yxatdan o'tish (7 bosqich)
+- Fanlar tanlash (tugmalar orqali)
+- Google Sheets ga avtomatik saqlash
+- Admin tasdiqlash / rad etish
+- Foydalanuvchiga bildirishnoma
+- Statistika
+- Bekor qilish buyrug'i
+- Noto'g'ri xabarga javob
 
----
+## Buyruqlar
+| Buyruq | Kim uchun | Vazifasi |
+|--------|-----------|---------|
+| /start | Hammaga | Bosh menyu |
+| /yordam | Hammaga | Yordam |
+| /bekor | Hammaga | Ro'yxatni bekor qilish |
+| /statistika | Faqat admin | Ariza statistikasi |
+| /arizalar | Faqat admin | Oxirgi 10 ariza |
 
-## 🚀 O'rnatish
+## O'rnatish
 
-### 1. BotFather dan token oling
-1. [@BotFather](https://t.me/BotFather) → `/newbot`
-2. TOKEN ni saqlang
+### 1. Bot yaratish
+- @BotFather → /newbot → TOKEN oling
 
-### 2. Admin Chat ID oling
-1. [@userinfobot](https://t.me/userinfobot) → `/start`
-2. ID ni saqlang
+### 2. Admin ID olish
+- @userinfobot → /start → ID oling
 
 ### 3. Google Sheets sozlash
-1. [console.cloud.google.com](https://console.cloud.google.com) ga kiring
+1. console.cloud.google.com ga kiring
 2. Yangi loyiha yarating
-3. **Google Sheets API** va **Google Drive API** ni yoqing
-4. **Service Account** yarating → JSON kalit yuklab oling
+3. Google Sheets API + Google Drive API ni yoqing
+4. Service Account yarating → JSON kalit yuklab oling
 5. Google Sheets da yangi jadval oching
-6. Jadval URL dan ID ni oling: `docs.google.com/spreadsheets/d/**ID**/edit`
-7. Jadvalni Service Account emailiga **Editor** sifatida ulashing
+6. Jadval URL dan ID oling
+7. Jadvalni Service Account emailiga Editor sifatida ulashing
 
-### 4. Render'ga deploy
-1. [render.com](https://render.com) → GitHub bilan kiring
-2. **New → Background Worker**
+### 4. Render deploy
+1. render.com → GitHub bilan kiring
+2. New → Background Worker
 3. GitHub repo ulang
 4. Environment Variables:
-   ```
-   BOT_TOKEN = tokeningiz
-   ADMIN_CHAT_ID = admin_id
-   GOOGLE_CREDENTIALS = json_fayl_ichidagi_hamma_matn
-   SPREADSHEET_ID = sheets_id
-   ```
-5. Deploy ✅
-
----
-
-## 📊 Statistika
-Admin `/statistika` buyrug'ini yuborsa ko'radi.
+   - BOT_TOKEN
+   - ADMIN_CHAT_ID
+   - GOOGLE_CREDENTIALS (JSON faylning ichidagi hamma matn)
+   - SPREADSHEET_ID
+5. Deploy!
