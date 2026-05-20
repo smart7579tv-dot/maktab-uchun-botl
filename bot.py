@@ -10,8 +10,9 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeybo
 
 logging.basicConfig(level=logging.INFO)
 
+# Atrof-muhit o'zgaruvchilarini olish
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-ADMIN_CHAT_ID = os.getenv("ADMIN_CHAT_ID")  # Admin yoki guruh ID
+ADMIN_CHAT_ID = os.getenv("ADMIN_CHAT_ID")
 
 bot = Bot(token=BOT_TOKEN)
 storage = MemoryStorage()
@@ -140,7 +141,6 @@ async def jshir_olish(message: types.Message, state: FSMContext):
         return
     await state.update_data(jshir=jshir)
     
-    # Telefon raqam yuborish uchun tugma
     keyboard = ReplyKeyboardMarkup(
         keyboard=[[KeyboardButton(text="📱 Raqamni yuborish", request_contact=True)]],
         resize_keyboard=True,
@@ -181,7 +181,6 @@ async def yakunlash(message: types.Message, state: FSMContext):
     await state.update_data(oldingi_maktab=message.text)
     data = await state.get_data()
 
-    # Foydalanuvchiga tasdiqlash
     await message.answer(
         "✅ *Ro'yxatdan o'tdingiz!*\n\n"
         "Ma'lumotlaringiz qabul qilindi. Tez orada siz bilan bog'lanamiz!\n\n"
@@ -189,7 +188,6 @@ async def yakunlash(message: types.Message, state: FSMContext):
         parse_mode="Markdown"
     )
 
-    # Adminga yuborish
     admin_xabar = (
         f"🔔 *Yangi ariza!*\n\n"
         f"👤 *Ism Familya:* {data.get('ism_familya')}\n"
@@ -217,6 +215,8 @@ async def yakunlash(message: types.Message, state: FSMContext):
 # BOTNI ISHGA TUSHIRISH
 # =====================
 async def main():
+    # Eski xabarlarni o'chirib yuborish (Render qayta yonganda eski so'rovlar tiqilib qolmasligi uchun)
+    await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
