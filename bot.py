@@ -54,7 +54,6 @@ class Royxat(StatesGroup):
     ism_familya = State()
     yashash_manzil = State()
     sinf = State()
-    jshir = State()
     ota_ona_tel = State()
     fanlar = State()
     oldingi_maktab = State()
@@ -62,7 +61,7 @@ class Royxat(StatesGroup):
 def asosiy_menyu():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Maktab haqida malumot", callback_data="maktab_malumot")],
-        [InlineKeyboardButton(text="Maktab oquvchisiga aylanish", callback_data="royxat_boshlash")]
+        [InlineKeyboardButton(text="Maktabga qabulga yozilish", callback_data="royxat_boshlash")]
     ])
 
 def fanlar_klaviatura(tanlangan: list):
@@ -167,7 +166,7 @@ async def ism_familya_olish(message: types.Message, state: FSMContext):
     await state.update_data(ism_familya=message.text)
     await message.answer(
         "2. Yashash manzilingizni kiriting:\n"
-        "(Masalan: Fargona vil., Yaypon tumani)"
+        "(Masalan: Fargona vil., Yaypan tumani)"
     )
     await state.set_state(Royxat.yashash_manzil)
 
@@ -283,7 +282,6 @@ async def yakunlash(message: types.Message, state: FSMContext):
         f"Ism Familya: {data.get('ism_familya')}\n"
         f"Manzil: {data.get('yashash_manzil')}\n"
         f"Sinf: {data.get('sinf')}\n"
-        f"JSHIR: {data.get('jshir')}\n"
         f"Ota-ona tel: {data.get('ota_ona_tel')}\n"
         f"Fanlar: {data.get('fanlar')}\n"
         f"Oldingi maktab: {data.get('oldingi_maktab')}\n"
