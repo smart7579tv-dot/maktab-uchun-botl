@@ -16,7 +16,10 @@ from aiogram.types import (
 logging.basicConfig(level=logging.INFO)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-ADMIN_CHAT_ID = os.getenv("ADMIN_CHAT_ID")
+ADMIN_IDS = [a.strip() for a in os.getenv("ADMIN_CHAT_ID", "").split(",") if a.strip()]
+
+def is_admin(user_id) -> bool:
+    return str(user_id) in ADMIN_IDS
 PORT = int(os.getenv("PORT", 8080))
 
 bot = Bot(token=BOT_TOKEN)
@@ -143,7 +146,7 @@ async def bekor(message: types.Message, state: FSMContext):
 
 @dp.message(Command("statistika"))
 async def statistika(message: types.Message):
-    if str(message.from_user.id) != str(ADMIN_CHAT_ID):
+    if not is_admin(message.from_user.id):
         return
     jami = len(arizalar)
     qabul = sum(1 for a in arizalar.values() if a.get("holat") == "qabul")
@@ -312,14 +315,15 @@ async def telefon_olish(message: types.Message, state: FSMContext):
         f"👤 Username: @{username or 'yoq'}"
     )
 
-    try:
-        await bot.send_message(
-            chat_id=ADMIN_CHAT_ID,
-            text=admin_xabar,
-            reply_markup=admin_menyu(ariza_id)
-        )
-    except Exception as e:
-        logging.error(f"Admin xabar xato: {e}")
+    for admin_id in ADMIN_IDS:
+        try:
+            await bot.send_message(
+                chat_id=admin_id,
+                text=admin_xabar,
+                reply_markup=admin_menyu(ariza_id)
+            )
+        except Exception as e:
+            logging.error(f"Admin xabar xato: {e}")
 
     await state.clear()
 
