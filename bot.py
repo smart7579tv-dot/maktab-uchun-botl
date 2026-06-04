@@ -64,7 +64,7 @@ def asosiy_menyu():
 
 def sinf_klaviatura():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎒 Boshlang'ich ta'lim (1-4 sinf)", callback_data="sinf_boshlangich")],
+        [InlineKeyboardButton(text="🎒 Boshlang'ich ta'lim ", callback_data="sinf_boshlangich")],
         [
             InlineKeyboardButton(text="1-sinf", callback_data="sinf_1"),
             InlineKeyboardButton(text="2-sinf", callback_data="sinf_2"),
@@ -202,7 +202,7 @@ async def ism_olish(message: types.Message, state: FSMContext):
 @dp.callback_query(Royxat.sinf, F.data.startswith("sinf_"))
 async def sinf_olish(callback: types.CallbackQuery, state: FSMContext):
     sinf_map = {
-        "sinf_boshlangich": "Boshlang'ich ta'lim (1-4 sinf)",
+        "sinf_boshlangich": "Boshlang'ich ta'lim ",
         "sinf_1": "1-sinf", "sinf_2": "2-sinf", "sinf_3": "3-sinf",
         "sinf_4": "4-sinf", "sinf_5": "5-sinf", "sinf_6": "6-sinf",
         "sinf_7": "7-sinf", "sinf_8": "8-sinf", "sinf_9": "9-sinf",
